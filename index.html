@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Retouch product photos locally in your browser." />
+    <title>Retouch — Product photo enhancer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/">retouch<span>.</span></a>
+        <span class="privacy-note">Runs locally in your browser</span>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">Simple product photography</p>
+        <h1>Make your product photos<br /><em>ready to sell.</em></h1>
+        <p class="hero-copy">Improve lighting, color, clarity, and background tone without changing your product.</p>
+      </section>
+
+      <section class="workspace" aria-label="Product photo editor">
+        <div class="upload-panel" id="uploadPanel">
+          <input id="fileInput" type="file" accept="image/*" hidden />
+          <div class="upload-icon">↑</div>
+          <h2>Drop a product photo here</h2>
+          <p>PNG, JPG, or WebP · processed on your device</p>
+          <button class="button button-dark" id="chooseButton" type="button">Choose image</button>
+        </div>
+
+        <div class="editor hidden" id="editor">
+          <div class="canvas-wrap">
+            <div class="canvas-toolbar">
+              <span id="imageStatus">Original</span>
+              <button class="text-button" id="compareButton" type="button">Hold to compare</button>
+            </div>
+            <canvas id="canvas"></canvas>
+          </div>
+
+          <aside class="controls">
+            <div class="controls-heading">
+              <div>
+                <p class="eyebrow">Enhance</p>
+                <h2>Your product, improved</h2>
+              </div>
+              <button class="icon-button" id="resetButton" type="button" title="Reset adjustments">↺</button>
+            </div>
+
+            <button class="preset" id="presetButton" type="button">
+              <span><strong>Professional catalog</strong><small>Subtle studio light and true-to-life color</small></span>
+              <span>✦</span>
+            </button>
+
+            <div class="control-list">
+              <label class="control"><span>Lighting <output id="lightingValue">12</output></span><input id="lighting" type="range" min="-50" max="50" value="12" /></label>
+              <label class="control"><span>Color <output id="colorValue">8</output></span><input id="color" type="range" min="-50" max="50" value="8" /></label>
+              <label class="control"><span>Warmth <output id="warmthValue">0</output></span><input id="warmth" type="range" min="-40" max="40" value="0" /></label>
+              <label class="control"><span>Clarity <output id="clarityValue">10</output></span><input id="clarity" type="range" min="0" max="40" value="10" /></label>
+              <label class="control"><span>New background</span><select id="backgroundStyle"><option value="original">Keep original</option><option value="linen">Soft linen</option><option value="wood">Warm wood</option><option value="gray">Studio white</option></select><small class="control-help" id="backgroundDescription">AI keeps the original background</small></label>
+              <button class="button button-light button-wide" id="applyBackgroundButton" type="button">Apply AI background</button>
+              <div class="background-review hidden" id="backgroundReview">
+                <span>Preview only — accept if the edges look natural.</span>
+                <button class="button button-dark button-wide" id="acceptBackgroundButton" type="button">Keep this background</button>
+                <button class="text-button" id="revertBackgroundButton" type="button">Revert preview</button>
+              </div>
+            </div>
+            <p class="editor-note"><strong>Product-safe editing</strong><br />Enhances presentation without redesigning the product, changing its colors, or inventing details.</p>
+
+            <div class="actions">
+              <button class="button button-dark button-wide" id="downloadButton" type="button">Download enhanced photo</button>
+              <button class="button button-light button-wide" id="newImageButton" type="button">Choose another image</button>
+            </div>
+            <p class="hint">Your original image is never uploaded or changed.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
